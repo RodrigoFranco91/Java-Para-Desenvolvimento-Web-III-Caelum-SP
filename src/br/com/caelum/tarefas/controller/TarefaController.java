@@ -1,14 +1,18 @@
 package br.com.caelum.tarefas.controller;
 
+
 import javax.validation.Valid;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import br.com.caelum.tarefas.dao.JdbcTarefaDao;
 import br.com.caelum.tarefas.modelo.Tarefa;
+
 
 @Controller
 public class TarefaController {
@@ -55,5 +59,16 @@ public class TarefaController {
 		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.altera(tarefa);
 		return "redirect:listaTarefas";
+	}
+	
+	// Aqui não podemos retornar uma string, pois se retornar uma string a função de call back irá ter o valor da string e não da página que redenriza a data
+	@ResponseBody
+	@RequestMapping("finalizaTarefa")
+	public ModelAndView finaliza(Long id){
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		dao.finaliza(id);		
+		ModelAndView mv = new ModelAndView("tarefa/dataFinalizada");
+		mv.addObject("tarefa", dao.buscaPorId(id));
+		return mv;
 	}
 }

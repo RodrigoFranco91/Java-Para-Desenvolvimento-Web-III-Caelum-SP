@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Listagem Tarefas</title>
 	</head>
@@ -26,14 +27,16 @@
 					<td>${tarefa.descricao}</td>
 					
 					<c:if test="${tarefa.finalizado eq false }">
-						<td>Não Finalizado</td>
+						<td id="tarefa_${tarefa.id}">
+							<a href="#" onclick="finalizaAgora(${tarefa.id})">Finalizar agora!</a>
+						</td>
 					</c:if>
 					
 					<c:if test="${tarefa.finalizado eq true }">
 						<td>Finalizado</td>
 					</c:if>
 					
-					<td>
+					<td id="tarefa_data_${tarefa.id}">
 						<fmt:formatDate value="${tarefa.dataFinalizacao.time}" pattern="dd/MM/yyyy"/>
 					</td>
 					<td><a href="removeTarefa?id=${tarefa.id}">Deletar</a></td>
@@ -41,5 +44,13 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<script>
+			function finalizaAgora(id) {
+				$.post("finalizaTarefa", {'id' : id}, function(resposta){
+					$("#tarefa_"+id).html("Finalizado");
+					$("#tarefa_data_"+id).html(resposta);
+				})
+			}
+		</script>
 	</body>
 </html>
