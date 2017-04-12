@@ -8,25 +8,22 @@ import javax.persistence.Persistence;
 
 import br.com.caelum.tarefas.modelo.Tarefa;
 
-public class AdicionaTarefa {
+public class AtualizaTarefa {
 
 	public static void main(String[] args) {
-
+		
 		Tarefa tarefa = new Tarefa();
-		tarefa.setDescricao("Tarefa adicionada com Hibernate");
-		tarefa.setFinalizado(false);
-		tarefa.setDataFinalizacao(Calendar.getInstance());
-
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("tarefas");
 		EntityManager manager = factory.createEntityManager();
-
+		
+		tarefa.setId(2L);
+		tarefa.setDataFinalizacao(Calendar.getInstance());
+		tarefa.setDescricao("Testando update com Hibernate");
+		tarefa.setFinalizado(true);
+		
 		manager.getTransaction().begin();
-		manager.persist(tarefa);
+		manager.merge(tarefa);
 		manager.getTransaction().commit();
-
-		System.out.println("ID da tarefa: " + tarefa.getId());
-
 		manager.close();
 	}
-
 }
