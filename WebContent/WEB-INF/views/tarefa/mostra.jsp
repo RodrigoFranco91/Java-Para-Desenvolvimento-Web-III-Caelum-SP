@@ -8,6 +8,7 @@
 	<head>
 		<script src="resources/js/jquery.js" ></script>
 		<script src="resources/js/jquery-ui.js" ></script>
+		<link type="text/css" href="resources/css/tarefas.css" rel="stylesheet" />
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Update Tarefa</title>
 	</head>
