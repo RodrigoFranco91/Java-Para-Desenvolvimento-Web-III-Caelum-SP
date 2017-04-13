@@ -29,7 +29,7 @@
 			
 			<!-- Propiedades do Hibernate - Fim do comentario -->
 			
-			<!-- Atualiza o banco de dados, gera as tabelas de for preciso-->
+			<!-- Atualiza o banco de dados, gera as tabelas Se for preciso-->
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			
 		</properties>
