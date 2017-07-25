@@ -8,6 +8,6 @@
 		<title>Primeira Página com SpringMVC</title>
 	</head>
 	<body>
-		<h2>Olá Mundo com Spring MVC!</h2>
+		<h2>Olá Mundo com Spring MVC!!</h2>
 	</body>
 </html>
